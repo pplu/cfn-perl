@@ -33,7 +33,6 @@
       "ConstraintDescription" : "Enter db.t2.micro or db.m2.small. Default is db.t2.micro."
     },
     "MultiAZDatabase": {
-      "Default": "false",
       "Description" : "Create a Multi-AZ MySQL Amazon RDS database instance",
       "Type": "String",
       "Default" : "false",
