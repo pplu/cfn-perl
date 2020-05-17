@@ -23,7 +23,7 @@ on develop => sub {
   requires 'MooseX::Types::Path::Class';
   requires 'MooseX::DataModel';
   requires 'JSON::MaybeXS';
-  requires 'Sort::Topological';
+  requires 'Data::Graph::Util';
   requires 'Template';
   requires 'Mojo::UserAgent';
   requires 'IO::Socket::SSL';
