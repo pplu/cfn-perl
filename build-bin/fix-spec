@@ -61,6 +61,11 @@ $doc->{PropertyTypes}{'AWS::MediaPackage::PackagingConfiguration.DashEncryption'
 $doc->{PropertyTypes}{'AWS::MediaPackage::PackagingConfiguration.CmafEncryption'}{Properties}{SpekeKeyProvider}{Type} = 'SpekeKeyProvider';
 $doc->{PropertyTypes}{'AWS::MediaPackage::PackagingConfiguration.MssEncryption'}{Properties}{SpekeKeyProvider}{Type} = 'SpekeKeyProvider';
 
+
+# See: https://github.com/awsdocs/aws-cloudformation-user-guide/issues/876
+# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-action.html
+delete $doc->{PropertyTypes}{'AWS::DataBrew::Recipe.Action'}{Properties}{Parameters};
+
 my $dest_file = Path::Class::File->new($to);
 $dest_file->spew($json->encode($doc));
 
