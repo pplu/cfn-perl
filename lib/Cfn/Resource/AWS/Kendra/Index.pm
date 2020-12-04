@@ -1,4 +1,4 @@
-# AWS::Kendra::Index generated from spec 18.4.0
+# AWS::Kendra::Index generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::Kendra::Index',
@@ -14,7 +14,7 @@ package Cfn::Resource::AWS::Kendra::Index {
     [ 'Arn','Id' ]
   }
   sub supported_regions {
-    [ 'eu-west-1','us-east-1','us-west-2' ]
+    [ 'ap-southeast-2','eu-west-1','us-east-1','us-west-2' ]
   }
 }
 

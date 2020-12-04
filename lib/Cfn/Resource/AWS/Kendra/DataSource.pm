@@ -1,4 +1,4 @@
-# AWS::Kendra::DataSource generated from spec 20.1.0
+# AWS::Kendra::DataSource generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::Kendra::DataSource',
@@ -14,7 +14,7 @@ package Cfn::Resource::AWS::Kendra::DataSource {
     [ 'Arn','Id' ]
   }
   sub supported_regions {
-    [ 'eu-west-1','us-east-1','us-west-2' ]
+    [ 'ap-southeast-2','eu-west-1','us-east-1','us-west-2' ]
   }
 }
 

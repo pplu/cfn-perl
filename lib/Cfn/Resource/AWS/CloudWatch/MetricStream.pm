@@ -1,4 +1,4 @@
-# AWS::CloudWatch::MetricStream generated from spec 20.1.0
+# AWS::CloudWatch::MetricStream generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::CloudWatch::MetricStream',
@@ -14,7 +14,7 @@ package Cfn::Resource::AWS::CloudWatch::MetricStream {
     [ 'Arn','CreationDate','LastUpdateDate','State' ]
   }
   sub supported_regions {
-    [ 'us-east-1' ]
+    [ 'ap-northeast-1','ap-northeast-2','ap-southeast-2','eu-central-1','eu-west-1','us-east-1','us-east-2','us-west-2' ]
   }
 }
 

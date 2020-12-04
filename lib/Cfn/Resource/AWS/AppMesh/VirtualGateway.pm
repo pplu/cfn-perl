@@ -1,4 +1,4 @@
-# AWS::AppMesh::VirtualGateway generated from spec 18.4.0
+# AWS::AppMesh::VirtualGateway generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway',
@@ -170,6 +170,70 @@ package Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualGateway::Virtual
   has File => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway::VirtualGatewayListenerTlsFileCertificate', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
+subtype 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway::VirtualGatewayHttpConnectionPool',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway::VirtualGatewayHttpConnectionPool',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualGateway::VirtualGatewayHttpConnectionPool->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualGateway::VirtualGatewayHttpConnectionPool {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has MaxConnections => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has MaxPendingRequests => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
+subtype 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway::VirtualGatewayHttp2ConnectionPool',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway::VirtualGatewayHttp2ConnectionPool',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualGateway::VirtualGatewayHttp2ConnectionPool->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualGateway::VirtualGatewayHttp2ConnectionPool {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has MaxRequests => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
+subtype 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway::VirtualGatewayGrpcConnectionPool',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway::VirtualGatewayGrpcConnectionPool',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualGateway::VirtualGatewayGrpcConnectionPool->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualGateway::VirtualGatewayGrpcConnectionPool {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has MaxRequests => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
 subtype 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway::VirtualGatewayFileAccessLog',
      as 'Cfn::Value';
 
@@ -285,6 +349,29 @@ package Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualGateway::Virtual
   has UnhealthyThreshold => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
+subtype 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway::VirtualGatewayConnectionPool',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway::VirtualGatewayConnectionPool',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualGateway::VirtualGatewayConnectionPool->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualGateway::VirtualGatewayConnectionPool {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has GRPC => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway::VirtualGatewayGrpcConnectionPool', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has HTTP => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway::VirtualGatewayHttpConnectionPool', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has HTTP2 => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway::VirtualGatewayHttp2ConnectionPool', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
 subtype 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway::VirtualGatewayClientPolicy',
      as 'Cfn::Value';
 
@@ -388,6 +475,7 @@ package Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualGateway::Virtual
   use MooseX::StrictConstructor;
   extends 'Cfn::Value::TypedValue';
   
+  has ConnectionPool => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway::VirtualGatewayConnectionPool', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has HealthCheck => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway::VirtualGatewayHealthCheckPolicy', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has PortMapping => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway::VirtualGatewayPortMapping', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has TLS => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualGateway::VirtualGatewayListenerTls', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');

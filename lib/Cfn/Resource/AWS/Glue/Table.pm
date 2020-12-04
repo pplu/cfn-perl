@@ -1,4 +1,4 @@
-# AWS::Glue::Table generated from spec 18.4.0
+# AWS::Glue::Table generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::Glue::Table',
@@ -155,6 +155,29 @@ package Cfn::Resource::Properties::Object::AWS::Glue::Table::Column {
   has Type => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
+subtype 'Cfn::Resource::Properties::AWS::Glue::Table::TableIdentifier',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::Glue::Table::TableIdentifier',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::Glue::Table::TableIdentifier->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::Glue::Table::TableIdentifier {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has CatalogId => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has DatabaseName => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has Name => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
 subtype 'Cfn::Resource::Properties::AWS::Glue::Table::StorageDescriptor',
      as 'Cfn::Value';
 
@@ -213,6 +236,7 @@ package Cfn::Resource::Properties::Object::AWS::Glue::Table::TableInput {
   has Retention => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has StorageDescriptor => (isa => 'Cfn::Resource::Properties::AWS::Glue::Table::StorageDescriptor', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has TableType => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has TargetTable => (isa => 'Cfn::Resource::Properties::AWS::Glue::Table::TableIdentifier', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has ViewExpandedText => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has ViewOriginalText => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }

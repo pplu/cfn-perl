@@ -1,4 +1,4 @@
-# AWS::S3::Bucket generated from spec 20.1.0
+# AWS::S3::Bucket generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::S3::Bucket',
@@ -684,6 +684,50 @@ package Cfn::Resource::Properties::Object::AWS::S3::Bucket::TopicConfiguration {
   has Filter => (isa => 'Cfn::Resource::Properties::AWS::S3::Bucket::NotificationFilter', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Topic => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
+subtype 'ArrayOfCfn::Resource::Properties::AWS::S3::Bucket::Tiering',
+     as 'Cfn::Value',
+  where { $_->isa('Cfn::Value::Array') or $_->isa('Cfn::Value::Function') },
+message { "$_ is not a Cfn::Value or a Cfn::Value::Function" };
+
+coerce 'ArrayOfCfn::Resource::Properties::AWS::S3::Bucket::Tiering',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       die 'Only accepts functions'; 
+     }
+   },
+  from 'ArrayRef',
+   via {
+     Cfn::Value::Array->new(Value => [
+       map { 
+         Moose::Util::TypeConstraints::find_type_constraint('Cfn::Resource::Properties::AWS::S3::Bucket::Tiering')->coerce($_)
+       } @$_
+     ]);
+   };
+
+subtype 'Cfn::Resource::Properties::AWS::S3::Bucket::Tiering',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::S3::Bucket::Tiering',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::S3::Bucket::Tiering->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::S3::Bucket::Tiering {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has AccessTier => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has Days => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
 
 subtype 'Cfn::Resource::Properties::AWS::S3::Bucket::StorageClassAnalysis',
      as 'Cfn::Value';
@@ -963,6 +1007,49 @@ package Cfn::Resource::Properties::Object::AWS::S3::Bucket::QueueConfiguration {
   has Filter => (isa => 'Cfn::Resource::Properties::AWS::S3::Bucket::NotificationFilter', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Queue => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
+subtype 'ArrayOfCfn::Resource::Properties::AWS::S3::Bucket::OwnershipControlsRule',
+     as 'Cfn::Value',
+  where { $_->isa('Cfn::Value::Array') or $_->isa('Cfn::Value::Function') },
+message { "$_ is not a Cfn::Value or a Cfn::Value::Function" };
+
+coerce 'ArrayOfCfn::Resource::Properties::AWS::S3::Bucket::OwnershipControlsRule',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       die 'Only accepts functions'; 
+     }
+   },
+  from 'ArrayRef',
+   via {
+     Cfn::Value::Array->new(Value => [
+       map { 
+         Moose::Util::TypeConstraints::find_type_constraint('Cfn::Resource::Properties::AWS::S3::Bucket::OwnershipControlsRule')->coerce($_)
+       } @$_
+     ]);
+   };
+
+subtype 'Cfn::Resource::Properties::AWS::S3::Bucket::OwnershipControlsRule',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::S3::Bucket::OwnershipControlsRule',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::S3::Bucket::OwnershipControlsRule->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::S3::Bucket::OwnershipControlsRule {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has ObjectOwnership => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
 
 subtype 'Cfn::Resource::Properties::AWS::S3::Bucket::ObjectLockRule',
      as 'Cfn::Value';
@@ -1169,6 +1256,27 @@ package Cfn::Resource::Properties::Object::AWS::S3::Bucket::PublicAccessBlockCon
   has RestrictPublicBuckets => (isa => 'Cfn::Value::Boolean', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
+subtype 'Cfn::Resource::Properties::AWS::S3::Bucket::OwnershipControls',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::S3::Bucket::OwnershipControls',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::S3::Bucket::OwnershipControls->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::S3::Bucket::OwnershipControls {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has Rules => (isa => 'ArrayOfCfn::Resource::Properties::AWS::S3::Bucket::OwnershipControlsRule', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
 subtype 'Cfn::Resource::Properties::AWS::S3::Bucket::ObjectLockConfiguration',
      as 'Cfn::Value';
 
@@ -1350,6 +1458,53 @@ package Cfn::Resource::Properties::Object::AWS::S3::Bucket::InventoryConfigurati
   has Prefix => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has ScheduleFrequency => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
+subtype 'ArrayOfCfn::Resource::Properties::AWS::S3::Bucket::IntelligentTieringConfiguration',
+     as 'Cfn::Value',
+  where { $_->isa('Cfn::Value::Array') or $_->isa('Cfn::Value::Function') },
+message { "$_ is not a Cfn::Value or a Cfn::Value::Function" };
+
+coerce 'ArrayOfCfn::Resource::Properties::AWS::S3::Bucket::IntelligentTieringConfiguration',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       die 'Only accepts functions'; 
+     }
+   },
+  from 'ArrayRef',
+   via {
+     Cfn::Value::Array->new(Value => [
+       map { 
+         Moose::Util::TypeConstraints::find_type_constraint('Cfn::Resource::Properties::AWS::S3::Bucket::IntelligentTieringConfiguration')->coerce($_)
+       } @$_
+     ]);
+   };
+
+subtype 'Cfn::Resource::Properties::AWS::S3::Bucket::IntelligentTieringConfiguration',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::S3::Bucket::IntelligentTieringConfiguration',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::S3::Bucket::IntelligentTieringConfiguration->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::S3::Bucket::IntelligentTieringConfiguration {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has Id => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has Prefix => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has Status => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has TagFilters => (isa => 'ArrayOfCfn::Resource::Properties::AWS::S3::Bucket::TagFilter', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has Tierings => (isa => 'ArrayOfCfn::Resource::Properties::AWS::S3::Bucket::Tiering', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
 
 subtype 'Cfn::Resource::Properties::AWS::S3::Bucket::CorsConfiguration',
      as 'Cfn::Value';
@@ -1471,6 +1626,7 @@ package Cfn::Resource::Properties::AWS::S3::Bucket {
   has BucketEncryption => (isa => 'Cfn::Resource::Properties::AWS::S3::Bucket::BucketEncryption', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has BucketName => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has CorsConfiguration => (isa => 'Cfn::Resource::Properties::AWS::S3::Bucket::CorsConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has IntelligentTieringConfigurations => (isa => 'ArrayOfCfn::Resource::Properties::AWS::S3::Bucket::IntelligentTieringConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has InventoryConfigurations => (isa => 'ArrayOfCfn::Resource::Properties::AWS::S3::Bucket::InventoryConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has LifecycleConfiguration => (isa => 'Cfn::Resource::Properties::AWS::S3::Bucket::LifecycleConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has LoggingConfiguration => (isa => 'Cfn::Resource::Properties::AWS::S3::Bucket::LoggingConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
@@ -1478,6 +1634,7 @@ package Cfn::Resource::Properties::AWS::S3::Bucket {
   has NotificationConfiguration => (isa => 'Cfn::Resource::Properties::AWS::S3::Bucket::NotificationConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has ObjectLockConfiguration => (isa => 'Cfn::Resource::Properties::AWS::S3::Bucket::ObjectLockConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has ObjectLockEnabled => (isa => 'Cfn::Value::Boolean', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
+  has OwnershipControls => (isa => 'Cfn::Resource::Properties::AWS::S3::Bucket::OwnershipControls', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has PublicAccessBlockConfiguration => (isa => 'Cfn::Resource::Properties::AWS::S3::Bucket::PublicAccessBlockConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has ReplicationConfiguration => (isa => 'Cfn::Resource::Properties::AWS::S3::Bucket::ReplicationConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Tags => (isa => 'ArrayOfCfn::Resource::Properties::TagType', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');

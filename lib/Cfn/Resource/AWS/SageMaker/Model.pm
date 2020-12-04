@@ -1,4 +1,4 @@
-# AWS::SageMaker::Model generated from spec 20.1.0
+# AWS::SageMaker::Model generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::SageMaker::Model',
@@ -19,6 +19,27 @@ package Cfn::Resource::AWS::SageMaker::Model {
 }
 
 
+
+subtype 'Cfn::Resource::Properties::AWS::SageMaker::Model::MultiModelConfig',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::SageMaker::Model::MultiModelConfig',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::SageMaker::Model::MultiModelConfig->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::SageMaker::Model::MultiModelConfig {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has ModelCacheSetting => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
+}
 
 subtype 'Cfn::Resource::Properties::AWS::SageMaker::Model::ImageConfig',
      as 'Cfn::Value';
@@ -110,6 +131,7 @@ package Cfn::Resource::Properties::Object::AWS::SageMaker::Model::ContainerDefin
   has Mode => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has ModelDataUrl => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has ModelPackageName => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
+  has MultiModelConfig => (isa => 'Cfn::Resource::Properties::AWS::SageMaker::Model::MultiModelConfig', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
 }
 
 package Cfn::Resource::Properties::AWS::SageMaker::Model {

@@ -1,4 +1,4 @@
-# AWS::EC2::ClientVpnEndpoint generated from spec 20.1.0
+# AWS::EC2::ClientVpnEndpoint generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::EC2::ClientVpnEndpoint',
@@ -150,6 +150,28 @@ package Cfn::Resource::Properties::Object::AWS::EC2::ClientVpnEndpoint::Connecti
   has CloudwatchLogStream => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Enabled => (isa => 'Cfn::Value::Boolean', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
+
+subtype 'Cfn::Resource::Properties::AWS::EC2::ClientVpnEndpoint::ClientConnectOptions',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::EC2::ClientVpnEndpoint::ClientConnectOptions',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::EC2::ClientVpnEndpoint::ClientConnectOptions->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::EC2::ClientVpnEndpoint::ClientConnectOptions {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has Enabled => (isa => 'Cfn::Value::Boolean', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has LambdaFunctionArn => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
 subtype 'ArrayOfCfn::Resource::Properties::AWS::EC2::ClientVpnEndpoint::ClientAuthenticationRequest',
      as 'Cfn::Value',
   where { $_->isa('Cfn::Value::Array') or $_->isa('Cfn::Value::Function') },
@@ -204,6 +226,7 @@ package Cfn::Resource::Properties::AWS::EC2::ClientVpnEndpoint {
   
   has AuthenticationOptions => (isa => 'ArrayOfCfn::Resource::Properties::AWS::EC2::ClientVpnEndpoint::ClientAuthenticationRequest', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has ClientCidrBlock => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
+  has ClientConnectOptions => (isa => 'Cfn::Resource::Properties::AWS::EC2::ClientVpnEndpoint::ClientConnectOptions', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has ConnectionLogOptions => (isa => 'Cfn::Resource::Properties::AWS::EC2::ClientVpnEndpoint::ConnectionLogOptions', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Description => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has DnsServers => (isa => 'Cfn::Value::Array|Cfn::Value::Function|Cfn::DynamicValue', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');

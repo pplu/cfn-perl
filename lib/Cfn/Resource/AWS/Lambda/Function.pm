@@ -1,4 +1,4 @@
-# AWS::Lambda::Function generated from spec 18.4.0
+# AWS::Lambda::Function generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::Lambda::Function',
@@ -179,6 +179,7 @@ package Cfn::Resource::Properties::AWS::Lambda::Function {
   extends 'Cfn::Resource::Properties';
   
   has Code => (isa => 'Cfn::Resource::Properties::AWS::Lambda::Function::Code', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has CodeSigningConfigArn => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has DeadLetterConfig => (isa => 'Cfn::Resource::Properties::AWS::Lambda::Function::DeadLetterConfig', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Description => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Environment => (isa => 'Cfn::Resource::Properties::AWS::Lambda::Function::Environment', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
