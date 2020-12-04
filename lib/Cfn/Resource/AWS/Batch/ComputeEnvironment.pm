@@ -1,4 +1,4 @@
-# AWS::Batch::ComputeEnvironment generated from spec 20.1.0
+# AWS::Batch::ComputeEnvironment generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::Batch::ComputeEnvironment',
@@ -42,6 +42,50 @@ package Cfn::Resource::Properties::Object::AWS::Batch::ComputeEnvironment::Launc
   has LaunchTemplateName => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has Version => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
 }
+subtype 'ArrayOfCfn::Resource::Properties::AWS::Batch::ComputeEnvironment::Ec2ConfigurationObject',
+     as 'Cfn::Value',
+  where { $_->isa('Cfn::Value::Array') or $_->isa('Cfn::Value::Function') },
+message { "$_ is not a Cfn::Value or a Cfn::Value::Function" };
+
+coerce 'ArrayOfCfn::Resource::Properties::AWS::Batch::ComputeEnvironment::Ec2ConfigurationObject',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       die 'Only accepts functions'; 
+     }
+   },
+  from 'ArrayRef',
+   via {
+     Cfn::Value::Array->new(Value => [
+       map { 
+         Moose::Util::TypeConstraints::find_type_constraint('Cfn::Resource::Properties::AWS::Batch::ComputeEnvironment::Ec2ConfigurationObject')->coerce($_)
+       } @$_
+     ]);
+   };
+
+subtype 'Cfn::Resource::Properties::AWS::Batch::ComputeEnvironment::Ec2ConfigurationObject',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::Batch::ComputeEnvironment::Ec2ConfigurationObject',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::Batch::ComputeEnvironment::Ec2ConfigurationObject->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::Batch::ComputeEnvironment::Ec2ConfigurationObject {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has ImageIdOverride => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
+  has ImageType => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
+}
 
 subtype 'Cfn::Resource::Properties::AWS::Batch::ComputeEnvironment::ComputeResources',
      as 'Cfn::Value';
@@ -64,6 +108,7 @@ package Cfn::Resource::Properties::Object::AWS::Batch::ComputeEnvironment::Compu
   has AllocationStrategy => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has BidPercentage => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has DesiredvCpus => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has Ec2Configuration => (isa => 'ArrayOfCfn::Resource::Properties::AWS::Batch::ComputeEnvironment::Ec2ConfigurationObject', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has Ec2KeyPair => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has ImageId => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has InstanceRole => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');

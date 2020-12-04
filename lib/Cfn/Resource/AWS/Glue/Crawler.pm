@@ -1,4 +1,4 @@
-# AWS::Glue::Crawler generated from spec 18.4.0
+# AWS::Glue::Crawler generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::Glue::Crawler',
@@ -60,6 +60,7 @@ package Cfn::Resource::Properties::Object::AWS::Glue::Crawler::S3Target {
   use MooseX::StrictConstructor;
   extends 'Cfn::Value::TypedValue';
   
+  has ConnectionName => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Exclusions => (isa => 'Cfn::Value::Array|Cfn::Value::Function|Cfn::DynamicValue', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Path => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }

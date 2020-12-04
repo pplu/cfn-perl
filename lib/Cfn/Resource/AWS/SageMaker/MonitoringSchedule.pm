@@ -1,4 +1,4 @@
-# AWS::SageMaker::MonitoringSchedule generated from spec 18.4.0
+# AWS::SageMaker::MonitoringSchedule generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::SageMaker::MonitoringSchedule',
@@ -11,7 +11,7 @@ package Cfn::Resource::AWS::SageMaker::MonitoringSchedule {
   has Properties => (isa => 'Cfn::Resource::Properties::AWS::SageMaker::MonitoringSchedule', is => 'rw', coerce => 1);
   
   sub AttributeList {
-    [  ]
+    [ 'CreationTime','LastModifiedTime' ]
   }
   sub supported_regions {
     [ 'ap-east-1','ap-northeast-1','ap-northeast-2','ap-south-1','ap-southeast-1','ap-southeast-2','ca-central-1','cn-north-1','cn-northwest-1','eu-central-1','eu-north-1','eu-west-1','eu-west-2','eu-west-3','me-south-1','sa-east-1','us-east-1','us-east-2','us-west-1','us-west-2' ]
@@ -521,10 +521,8 @@ package Cfn::Resource::Properties::AWS::SageMaker::MonitoringSchedule {
   use MooseX::StrictConstructor;
   extends 'Cfn::Resource::Properties';
   
-  has CreationTime => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has EndpointName => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has FailureReason => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-  has LastModifiedTime => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has LastMonitoringExecutionSummary => (isa => 'Cfn::Resource::Properties::AWS::SageMaker::MonitoringSchedule::MonitoringExecutionSummary', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has MonitoringScheduleArn => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has MonitoringScheduleConfig => (isa => 'Cfn::Resource::Properties::AWS::SageMaker::MonitoringSchedule::MonitoringScheduleConfig', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');

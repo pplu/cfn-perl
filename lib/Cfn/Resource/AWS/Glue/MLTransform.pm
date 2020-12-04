@@ -1,4 +1,4 @@
-# AWS::Glue::MLTransform generated from spec 18.4.0
+# AWS::Glue::MLTransform generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::Glue::MLTransform',
@@ -19,6 +19,28 @@ package Cfn::Resource::AWS::Glue::MLTransform {
 }
 
 
+
+subtype 'Cfn::Resource::Properties::AWS::Glue::MLTransform::MLUserDataEncryption',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::Glue::MLTransform::MLUserDataEncryption',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::Glue::MLTransform::MLUserDataEncryption->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::Glue::MLTransform::MLUserDataEncryption {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has KmsKeyId => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has MLUserDataEncryptionMode => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
 subtype 'ArrayOfCfn::Resource::Properties::AWS::Glue::MLTransform::GlueTables',
      as 'Cfn::Value',
   where { $_->isa('Cfn::Value::Array') or $_->isa('Cfn::Value::Function') },
@@ -112,6 +134,28 @@ package Cfn::Resource::Properties::Object::AWS::Glue::MLTransform::TransformPara
   has TransformType => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
+subtype 'Cfn::Resource::Properties::AWS::Glue::MLTransform::TransformEncryption',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::Glue::MLTransform::TransformEncryption',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::Glue::MLTransform::TransformEncryption->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::Glue::MLTransform::TransformEncryption {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has MLUserDataEncryption => (isa => 'Cfn::Resource::Properties::AWS::Glue::MLTransform::MLUserDataEncryption', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has TaskRunSecurityConfigurationName => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
 subtype 'Cfn::Resource::Properties::AWS::Glue::MLTransform::InputRecordTables',
      as 'Cfn::Value';
 
@@ -148,6 +192,7 @@ package Cfn::Resource::Properties::AWS::Glue::MLTransform {
   has Role => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Tags => (isa => 'Cfn::Value::Json|Cfn::DynamicValue', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Timeout => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has TransformEncryption => (isa => 'Cfn::Resource::Properties::AWS::Glue::MLTransform::TransformEncryption', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has TransformParameters => (isa => 'Cfn::Resource::Properties::AWS::Glue::MLTransform::TransformParameters', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has WorkerType => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }

@@ -1,4 +1,4 @@
-# AWS::EC2::LaunchTemplate generated from spec 18.4.0
+# AWS::EC2::LaunchTemplate generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::EC2::LaunchTemplate',
@@ -178,6 +178,7 @@ package Cfn::Resource::Properties::Object::AWS::EC2::LaunchTemplate::CapacityRes
   extends 'Cfn::Value::TypedValue';
   
   has CapacityReservationId => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has CapacityReservationResourceGroupArn => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 subtype 'ArrayOfCfn::Resource::Properties::AWS::EC2::LaunchTemplate::TagSpecification',
      as 'Cfn::Value',
@@ -292,6 +293,7 @@ package Cfn::Resource::Properties::Object::AWS::EC2::LaunchTemplate::NetworkInte
   use MooseX::StrictConstructor;
   extends 'Cfn::Value::TypedValue';
   
+  has AssociateCarrierIpAddress => (isa => 'Cfn::Value::Boolean', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has AssociatePublicIpAddress => (isa => 'Cfn::Value::Boolean', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has DeleteOnTermination => (isa => 'Cfn::Value::Boolean', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Description => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
@@ -300,6 +302,7 @@ package Cfn::Resource::Properties::Object::AWS::EC2::LaunchTemplate::NetworkInte
   has InterfaceType => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Ipv6AddressCount => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Ipv6Addresses => (isa => 'ArrayOfCfn::Resource::Properties::AWS::EC2::LaunchTemplate::Ipv6Add', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has NetworkCardIndex => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has NetworkInterfaceId => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has PrivateIpAddress => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has PrivateIpAddresses => (isa => 'ArrayOfCfn::Resource::Properties::AWS::EC2::LaunchTemplate::PrivateIpAdd', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
@@ -502,6 +505,27 @@ package Cfn::Resource::Properties::Object::AWS::EC2::LaunchTemplate::Hibernation
   
   has Configured => (isa => 'Cfn::Value::Boolean', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
+
+subtype 'Cfn::Resource::Properties::AWS::EC2::LaunchTemplate::EnclaveOptions',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::EC2::LaunchTemplate::EnclaveOptions',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::EC2::LaunchTemplate::EnclaveOptions->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::EC2::LaunchTemplate::EnclaveOptions {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has Enabled => (isa => 'Cfn::Value::Boolean', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
 subtype 'ArrayOfCfn::Resource::Properties::AWS::EC2::LaunchTemplate::ElasticGpuSpecification',
      as 'Cfn::Value',
   where { $_->isa('Cfn::Value::Array') or $_->isa('Cfn::Value::Function') },
@@ -683,6 +707,7 @@ package Cfn::Resource::Properties::Object::AWS::EC2::LaunchTemplate::LaunchTempl
   has EbsOptimized => (isa => 'Cfn::Value::Boolean', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has ElasticGpuSpecifications => (isa => 'ArrayOfCfn::Resource::Properties::AWS::EC2::LaunchTemplate::ElasticGpuSpecification', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has ElasticInferenceAccelerators => (isa => 'ArrayOfCfn::Resource::Properties::AWS::EC2::LaunchTemplate::LaunchTemplateElasticInferenceAccelerator', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has EnclaveOptions => (isa => 'Cfn::Resource::Properties::AWS::EC2::LaunchTemplate::EnclaveOptions', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has HibernationOptions => (isa => 'Cfn::Resource::Properties::AWS::EC2::LaunchTemplate::HibernationOptions', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has IamInstanceProfile => (isa => 'Cfn::Resource::Properties::AWS::EC2::LaunchTemplate::IamInstanceProfile', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has ImageId => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');

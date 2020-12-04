@@ -1,4 +1,4 @@
-# AWS::Synthetics::Canary generated from spec 20.1.0
+# AWS::Synthetics::Canary generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::Synthetics::Canary',
@@ -84,6 +84,7 @@ package Cfn::Resource::Properties::Object::AWS::Synthetics::Canary::RunConfig {
   extends 'Cfn::Value::TypedValue';
   
   has ActiveTracing => (isa => 'Cfn::Value::Boolean', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has EnvironmentVariables => (isa => 'Cfn::Value::Hash|Cfn::DynamicValue', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has MemoryInMB => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has TimeoutInSeconds => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }

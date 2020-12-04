@@ -1,4 +1,4 @@
-# AWS::EC2::VPCEndpointService generated from spec 20.1.0
+# AWS::EC2::VPCEndpointService generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::EC2::VPCEndpointService',
@@ -26,6 +26,7 @@ package Cfn::Resource::Properties::AWS::EC2::VPCEndpointService {
   extends 'Cfn::Resource::Properties';
   
   has AcceptanceRequired => (isa => 'Cfn::Value::Boolean', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has GatewayLoadBalancerArns => (isa => 'Cfn::Value::Array|Cfn::Value::Function|Cfn::DynamicValue', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has NetworkLoadBalancerArns => (isa => 'Cfn::Value::Array|Cfn::Value::Function|Cfn::DynamicValue', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 

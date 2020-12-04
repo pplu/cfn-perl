@@ -1,4 +1,4 @@
-# AWS::AppMesh::VirtualNode generated from spec 18.4.0
+# AWS::AppMesh::VirtualNode generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode',
@@ -191,6 +191,91 @@ package Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualNode::ClientPoli
   has Enforce => (isa => 'Cfn::Value::Boolean', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Ports => (isa => 'Cfn::Value::Array|Cfn::Value::Function|Cfn::DynamicValue', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Validation => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::TlsValidationContext', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
+subtype 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::VirtualNodeTcpConnectionPool',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::VirtualNodeTcpConnectionPool',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualNode::VirtualNodeTcpConnectionPool->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualNode::VirtualNodeTcpConnectionPool {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has MaxConnections => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
+subtype 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::VirtualNodeHttpConnectionPool',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::VirtualNodeHttpConnectionPool',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualNode::VirtualNodeHttpConnectionPool->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualNode::VirtualNodeHttpConnectionPool {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has MaxConnections => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has MaxPendingRequests => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
+subtype 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::VirtualNodeHttp2ConnectionPool',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::VirtualNodeHttp2ConnectionPool',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualNode::VirtualNodeHttp2ConnectionPool->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualNode::VirtualNodeHttp2ConnectionPool {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has MaxRequests => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
+subtype 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::VirtualNodeGrpcConnectionPool',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::VirtualNodeGrpcConnectionPool',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualNode::VirtualNodeGrpcConnectionPool->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualNode::VirtualNodeGrpcConnectionPool {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has MaxRequests => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
 subtype 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::TcpTimeout',
@@ -388,6 +473,30 @@ package Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualNode::VirtualSer
   has VirtualServiceName => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
+subtype 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::VirtualNodeConnectionPool',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::VirtualNodeConnectionPool',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualNode::VirtualNodeConnectionPool->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualNode::VirtualNodeConnectionPool {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has GRPC => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::VirtualNodeGrpcConnectionPool', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has HTTP => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::VirtualNodeHttpConnectionPool', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has HTTP2 => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::VirtualNodeHttp2ConnectionPool', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has TCP => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::VirtualNodeTcpConnectionPool', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
 subtype 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::PortMapping',
      as 'Cfn::Value';
 
@@ -408,6 +517,30 @@ package Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualNode::PortMappin
   
   has Port => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Protocol => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
+subtype 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::OutlierDetection',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::OutlierDetection',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualNode::OutlierDetection->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualNode::OutlierDetection {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has BaseEjectionDuration => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::Duration', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has Interval => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::Duration', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has MaxEjectionPercent => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has MaxServerErrors => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
 subtype 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::ListenerTls',
@@ -631,7 +764,9 @@ package Cfn::Resource::Properties::Object::AWS::AppMesh::VirtualNode::Listener {
   use MooseX::StrictConstructor;
   extends 'Cfn::Value::TypedValue';
   
+  has ConnectionPool => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::VirtualNodeConnectionPool', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has HealthCheck => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::HealthCheck', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has OutlierDetection => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::OutlierDetection', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has PortMapping => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::PortMapping', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Timeout => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::ListenerTimeout', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has TLS => (isa => 'Cfn::Resource::Properties::AWS::AppMesh::VirtualNode::ListenerTls', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');

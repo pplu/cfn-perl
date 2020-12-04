@@ -1,4 +1,4 @@
-# AWS::Amplify::App generated from spec 20.1.0
+# AWS::Amplify::App generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::Amplify::App',
@@ -172,6 +172,7 @@ package Cfn::Resource::Properties::AWS::Amplify::App {
   has AutoBranchCreationConfig => (isa => 'Cfn::Resource::Properties::AWS::Amplify::App::AutoBranchCreationConfig', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has BasicAuthConfig => (isa => 'Cfn::Resource::Properties::AWS::Amplify::App::BasicAuthConfig', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has BuildSpec => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has CustomHeaders => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has CustomRules => (isa => 'ArrayOfCfn::Resource::Properties::AWS::Amplify::App::CustomRule', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Description => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has EnableBranchAutoDeletion => (isa => 'Cfn::Value::Boolean', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');

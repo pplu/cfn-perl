@@ -1,4 +1,4 @@
-# AWS::AppFlow::ConnectorProfile generated from spec 18.4.0
+# AWS::AppFlow::ConnectorProfile generated from spec 21.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::AppFlow::ConnectorProfile',
@@ -350,6 +350,7 @@ package Cfn::Resource::Properties::Object::AWS::AppFlow::ConnectorProfile::Sales
   extends 'Cfn::Value::TypedValue';
   
   has AccessToken => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has ClientCredentialsArn => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has ConnectorOAuthRequest => (isa => 'Cfn::Resource::Properties::AWS::AppFlow::ConnectorProfile::ConnectorOAuthRequest', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has RefreshToken => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
