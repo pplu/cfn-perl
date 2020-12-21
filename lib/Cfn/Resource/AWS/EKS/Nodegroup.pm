@@ -1,4 +1,4 @@
-# AWS::EKS::Nodegroup generated from spec 18.4.0
+# AWS::EKS::Nodegroup generated from spec 22.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::EKS::Nodegroup',
@@ -94,6 +94,7 @@ package Cfn::Resource::Properties::AWS::EKS::Nodegroup {
   extends 'Cfn::Resource::Properties';
   
   has AmiType => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
+  has CapacityType => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has ClusterName => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has DiskSize => (isa => 'Cfn::Value::Double', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has ForceUpdateEnabled => (isa => 'Cfn::Value::Boolean', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');

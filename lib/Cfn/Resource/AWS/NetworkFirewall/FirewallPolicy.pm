@@ -1,4 +1,4 @@
-# AWS::NetworkFirewall::FirewallPolicy generated from spec 21.0.0
+# AWS::NetworkFirewall::FirewallPolicy generated from spec 22.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::NetworkFirewall::FirewallPolicy',
@@ -341,27 +341,6 @@ package Cfn::Resource::Properties::Object::AWS::NetworkFirewall::FirewallPolicy:
   has CustomActions => (isa => 'ArrayOfCfn::Resource::Properties::AWS::NetworkFirewall::FirewallPolicy::CustomAction', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
-subtype 'Cfn::Resource::Properties::AWS::NetworkFirewall::FirewallPolicy::Tags',
-     as 'Cfn::Value';
-
-coerce 'Cfn::Resource::Properties::AWS::NetworkFirewall::FirewallPolicy::Tags',
-  from 'HashRef',
-   via {
-     if (my $f = Cfn::TypeLibrary::try_function($_)) {
-       return $f
-     } else {
-       return Cfn::Resource::Properties::Object::AWS::NetworkFirewall::FirewallPolicy::Tags->new( %$_ );
-     }
-   };
-
-package Cfn::Resource::Properties::Object::AWS::NetworkFirewall::FirewallPolicy::Tags {
-  use Moose;
-  use MooseX::StrictConstructor;
-  extends 'Cfn::Value::TypedValue';
-  
-  has Tags => (isa => 'ArrayOfCfn::Resource::Properties::TagType', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-}
-
 subtype 'Cfn::Resource::Properties::AWS::NetworkFirewall::FirewallPolicy::FirewallPolicy',
      as 'Cfn::Value';
 
@@ -395,7 +374,7 @@ package Cfn::Resource::Properties::AWS::NetworkFirewall::FirewallPolicy {
   has Description => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has FirewallPolicy => (isa => 'Cfn::Resource::Properties::AWS::NetworkFirewall::FirewallPolicy::FirewallPolicy', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has FirewallPolicyName => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
-  has Tags => (isa => 'Cfn::Resource::Properties::AWS::NetworkFirewall::FirewallPolicy::Tags', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has Tags => (isa => 'ArrayOfCfn::Resource::Properties::TagType', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
 1;

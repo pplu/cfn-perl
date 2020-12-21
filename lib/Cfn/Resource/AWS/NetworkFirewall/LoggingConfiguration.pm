@@ -1,4 +1,4 @@
-# AWS::NetworkFirewall::LoggingConfiguration generated from spec 21.0.0
+# AWS::NetworkFirewall::LoggingConfiguration generated from spec 22.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::NetworkFirewall::LoggingConfiguration',
@@ -11,7 +11,7 @@ package Cfn::Resource::AWS::NetworkFirewall::LoggingConfiguration {
   has Properties => (isa => 'Cfn::Resource::Properties::AWS::NetworkFirewall::LoggingConfiguration', is => 'rw', coerce => 1);
   
   sub AttributeList {
-    [ 'FirewallArn','FirewallName' ]
+    [  ]
   }
   sub supported_regions {
     [ 'eu-west-1','us-east-1','us-west-2' ]
@@ -112,6 +112,8 @@ package Cfn::Resource::Properties::AWS::NetworkFirewall::LoggingConfiguration {
   use MooseX::StrictConstructor;
   extends 'Cfn::Resource::Properties';
   
+  has FirewallArn => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
+  has FirewallName => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has LoggingConfiguration => (isa => 'Cfn::Resource::Properties::AWS::NetworkFirewall::LoggingConfiguration::LoggingConfiguration', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 

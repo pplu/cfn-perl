@@ -1,4 +1,4 @@
-# AWS::Transfer::Server generated from spec 20.1.0
+# AWS::Transfer::Server generated from spec 22.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::Transfer::Server',
@@ -19,48 +19,6 @@ package Cfn::Resource::AWS::Transfer::Server {
 }
 
 
-subtype 'ArrayOfCfn::Resource::Properties::AWS::Transfer::Server::SecurityGroupId',
-     as 'Cfn::Value',
-  where { $_->isa('Cfn::Value::Array') or $_->isa('Cfn::Value::Function') },
-message { "$_ is not a Cfn::Value or a Cfn::Value::Function" };
-
-coerce 'ArrayOfCfn::Resource::Properties::AWS::Transfer::Server::SecurityGroupId',
-  from 'HashRef',
-   via {
-     if (my $f = Cfn::TypeLibrary::try_function($_)) {
-       return $f
-     } else {
-       die 'Only accepts functions'; 
-     }
-   },
-  from 'ArrayRef',
-   via {
-     Cfn::Value::Array->new(Value => [
-       map { 
-         Moose::Util::TypeConstraints::find_type_constraint('Cfn::Resource::Properties::AWS::Transfer::Server::SecurityGroupId')->coerce($_)
-       } @$_
-     ]);
-   };
-
-subtype 'Cfn::Resource::Properties::AWS::Transfer::Server::SecurityGroupId',
-     as 'Cfn::Value';
-
-coerce 'Cfn::Resource::Properties::AWS::Transfer::Server::SecurityGroupId',
-  from 'HashRef',
-   via {
-     if (my $f = Cfn::TypeLibrary::try_function($_)) {
-       return $f
-     } else {
-       return Cfn::Resource::Properties::Object::AWS::Transfer::Server::SecurityGroupId->new( %$_ );
-     }
-   };
-
-package Cfn::Resource::Properties::Object::AWS::Transfer::Server::SecurityGroupId {
-  use Moose;
-  use MooseX::StrictConstructor;
-  extends 'Cfn::Value::TypedValue';
-  
-}
 subtype 'ArrayOfCfn::Resource::Properties::AWS::Transfer::Server::Protocol',
      as 'Cfn::Value',
   where { $_->isa('Cfn::Value::Array') or $_->isa('Cfn::Value::Function') },
@@ -145,7 +103,7 @@ package Cfn::Resource::Properties::Object::AWS::Transfer::Server::EndpointDetail
   extends 'Cfn::Value::TypedValue';
   
   has AddressAllocationIds => (isa => 'Cfn::Value::Array|Cfn::Value::Function|Cfn::DynamicValue', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Conditional');
-  has SecurityGroupIds => (isa => 'ArrayOfCfn::Resource::Properties::AWS::Transfer::Server::SecurityGroupId', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has SecurityGroupIds => (isa => 'Cfn::Value::Array|Cfn::Value::Function|Cfn::DynamicValue', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has SubnetIds => (isa => 'Cfn::Value::Array|Cfn::Value::Function|Cfn::DynamicValue', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has VpcEndpointId => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has VpcId => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');

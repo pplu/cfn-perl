@@ -1,4 +1,4 @@
-# AWS::ApplicationInsights::Application generated from spec 20.1.0
+# AWS::ApplicationInsights::Application generated from spec 22.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::ApplicationInsights::Application',
@@ -178,6 +178,29 @@ package Cfn::Resource::Properties::Object::AWS::ApplicationInsights::Application
   has Logs => (isa => 'ArrayOfCfn::Resource::Properties::AWS::ApplicationInsights::Application::Log', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has WindowsEvents => (isa => 'ArrayOfCfn::Resource::Properties::AWS::ApplicationInsights::Application::WindowsEvent', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
+
+subtype 'Cfn::Resource::Properties::AWS::ApplicationInsights::Application::JMXPrometheusExporter',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::ApplicationInsights::Application::JMXPrometheusExporter',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::ApplicationInsights::Application::JMXPrometheusExporter->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::ApplicationInsights::Application::JMXPrometheusExporter {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has HostPort => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has JMXURL => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has PrometheusPort => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
 subtype 'ArrayOfCfn::Resource::Properties::AWS::ApplicationInsights::Application::Alarm',
      as 'Cfn::Value',
   where { $_->isa('Cfn::Value::Array') or $_->isa('Cfn::Value::Function') },
@@ -287,6 +310,7 @@ package Cfn::Resource::Properties::Object::AWS::ApplicationInsights::Application
   
   has AlarmMetrics => (isa => 'ArrayOfCfn::Resource::Properties::AWS::ApplicationInsights::Application::AlarmMetric', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Alarms => (isa => 'ArrayOfCfn::Resource::Properties::AWS::ApplicationInsights::Application::Alarm', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has JMXPrometheusExporter => (isa => 'Cfn::Resource::Properties::AWS::ApplicationInsights::Application::JMXPrometheusExporter', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Logs => (isa => 'ArrayOfCfn::Resource::Properties::AWS::ApplicationInsights::Application::Log', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has WindowsEvents => (isa => 'ArrayOfCfn::Resource::Properties::AWS::ApplicationInsights::Application::WindowsEvent', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }

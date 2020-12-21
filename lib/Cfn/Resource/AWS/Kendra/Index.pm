@@ -1,4 +1,4 @@
-# AWS::Kendra::Index generated from spec 21.0.0
+# AWS::Kendra::Index generated from spec 22.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::Kendra::Index',
@@ -133,6 +133,99 @@ package Cfn::Resource::Properties::Object::AWS::Kendra::Index::Relevance {
   has RankOrder => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has ValueImportanceItems => (isa => 'Cfn::Resource::Properties::AWS::Kendra::Index::ValueImportanceItems', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
+
+subtype 'Cfn::Resource::Properties::AWS::Kendra::Index::JwtTokenTypeConfiguration',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::Kendra::Index::JwtTokenTypeConfiguration',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::Kendra::Index::JwtTokenTypeConfiguration->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::Kendra::Index::JwtTokenTypeConfiguration {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has ClaimRegex => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has GroupAttributeField => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has Issuer => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has KeyLocation => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has SecretManagerArn => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has URL => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has UserNameAttributeField => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
+subtype 'Cfn::Resource::Properties::AWS::Kendra::Index::JsonTokenTypeConfiguration',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::Kendra::Index::JsonTokenTypeConfiguration',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::Kendra::Index::JsonTokenTypeConfiguration->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::Kendra::Index::JsonTokenTypeConfiguration {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has GroupAttributeField => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has UserNameAttributeField => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+subtype 'ArrayOfCfn::Resource::Properties::AWS::Kendra::Index::UserTokenConfiguration',
+     as 'Cfn::Value',
+  where { $_->isa('Cfn::Value::Array') or $_->isa('Cfn::Value::Function') },
+message { "$_ is not a Cfn::Value or a Cfn::Value::Function" };
+
+coerce 'ArrayOfCfn::Resource::Properties::AWS::Kendra::Index::UserTokenConfiguration',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       die 'Only accepts functions'; 
+     }
+   },
+  from 'ArrayRef',
+   via {
+     Cfn::Value::Array->new(Value => [
+       map { 
+         Moose::Util::TypeConstraints::find_type_constraint('Cfn::Resource::Properties::AWS::Kendra::Index::UserTokenConfiguration')->coerce($_)
+       } @$_
+     ]);
+   };
+
+subtype 'Cfn::Resource::Properties::AWS::Kendra::Index::UserTokenConfiguration',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::Kendra::Index::UserTokenConfiguration',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::Kendra::Index::UserTokenConfiguration->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::Kendra::Index::UserTokenConfiguration {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has JsonTokenTypeConfiguration => (isa => 'Cfn::Resource::Properties::AWS::Kendra::Index::JsonTokenTypeConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has JwtTokenTypeConfiguration => (isa => 'Cfn::Resource::Properties::AWS::Kendra::Index::JwtTokenTypeConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
 subtype 'ArrayOfCfn::Resource::Properties::AWS::Kendra::Index::DocumentMetadataConfiguration',
      as 'Cfn::Value',
   where { $_->isa('Cfn::Value::Array') or $_->isa('Cfn::Value::Function') },
@@ -178,6 +271,27 @@ package Cfn::Resource::Properties::Object::AWS::Kendra::Index::DocumentMetadataC
   has Relevance => (isa => 'Cfn::Resource::Properties::AWS::Kendra::Index::Relevance', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Search => (isa => 'Cfn::Resource::Properties::AWS::Kendra::Index::Search', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Type => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
+subtype 'Cfn::Resource::Properties::AWS::Kendra::Index::UserTokenConfigurationList',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::Kendra::Index::UserTokenConfigurationList',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::Kendra::Index::UserTokenConfigurationList->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::Kendra::Index::UserTokenConfigurationList {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has UserTokenConfigurationList => (isa => 'ArrayOfCfn::Resource::Properties::AWS::Kendra::Index::UserTokenConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
 subtype 'Cfn::Resource::Properties::AWS::Kendra::Index::TagList',
@@ -278,6 +392,8 @@ package Cfn::Resource::Properties::AWS::Kendra::Index {
   has RoleArn => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has ServerSideEncryptionConfiguration => (isa => 'Cfn::Resource::Properties::AWS::Kendra::Index::ServerSideEncryptionConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has Tags => (isa => 'Cfn::Resource::Properties::AWS::Kendra::Index::TagList', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has UserContextPolicy => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has UserTokenConfigurations => (isa => 'Cfn::Resource::Properties::AWS::Kendra::Index::UserTokenConfigurationList', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
 1;

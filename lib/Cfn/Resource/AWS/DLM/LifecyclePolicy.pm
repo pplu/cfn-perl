@@ -1,4 +1,4 @@
-# AWS::DLM::LifecyclePolicy generated from spec 21.0.0
+# AWS::DLM::LifecyclePolicy generated from spec 22.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::DLM::LifecyclePolicy',
@@ -470,6 +470,7 @@ package Cfn::Resource::Properties::AWS::DLM::LifecyclePolicy {
   has ExecutionRoleArn => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has PolicyDetails => (isa => 'Cfn::Resource::Properties::AWS::DLM::LifecyclePolicy::PolicyDetails', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has State => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has Tags => (isa => 'ArrayOfCfn::Resource::Properties::TagType', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
 1;

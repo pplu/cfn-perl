@@ -1,4 +1,4 @@
-# AWS::NetworkFirewall::Firewall generated from spec 21.0.0
+# AWS::NetworkFirewall::Firewall generated from spec 22.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::NetworkFirewall::Firewall',
@@ -19,27 +19,6 @@ package Cfn::Resource::AWS::NetworkFirewall::Firewall {
 }
 
 
-
-subtype 'Cfn::Resource::Properties::AWS::NetworkFirewall::Firewall::Tags',
-     as 'Cfn::Value';
-
-coerce 'Cfn::Resource::Properties::AWS::NetworkFirewall::Firewall::Tags',
-  from 'HashRef',
-   via {
-     if (my $f = Cfn::TypeLibrary::try_function($_)) {
-       return $f
-     } else {
-       return Cfn::Resource::Properties::Object::AWS::NetworkFirewall::Firewall::Tags->new( %$_ );
-     }
-   };
-
-package Cfn::Resource::Properties::Object::AWS::NetworkFirewall::Firewall::Tags {
-  use Moose;
-  use MooseX::StrictConstructor;
-  extends 'Cfn::Value::TypedValue';
-  
-  has Tags => (isa => 'ArrayOfCfn::Resource::Properties::TagType', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-}
 subtype 'ArrayOfCfn::Resource::Properties::AWS::NetworkFirewall::Firewall::SubnetMapping',
      as 'Cfn::Value',
   where { $_->isa('Cfn::Value::Array') or $_->isa('Cfn::Value::Function') },
@@ -96,7 +75,7 @@ package Cfn::Resource::Properties::AWS::NetworkFirewall::Firewall {
   has FirewallPolicyChangeProtection => (isa => 'Cfn::Value::Boolean', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has SubnetChangeProtection => (isa => 'Cfn::Value::Boolean', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has SubnetMappings => (isa => 'ArrayOfCfn::Resource::Properties::AWS::NetworkFirewall::Firewall::SubnetMapping', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-  has Tags => (isa => 'Cfn::Resource::Properties::AWS::NetworkFirewall::Firewall::Tags', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has Tags => (isa => 'ArrayOfCfn::Resource::Properties::TagType', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has VpcId => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
 }
 
