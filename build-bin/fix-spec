@@ -70,6 +70,9 @@ delete $doc->{PropertyTypes}{'AWS::DataBrew::Recipe.Action'}{Properties}{Paramet
 $doc->{ResourceTypes}{'AWS::ECR::PublicRepository'}{Properties}{RepositoryPolicyText}{PrimitiveType} = 'Json';
 $doc->{ResourceTypes}{'AWS::SageMaker::ModelPackageGroup'}{Properties}{ModelPackageGroupPolicy}{PrimitiveType} = 'Json';
 
+
+$doc->{ResourceTypes}{'AWS::RDS::OptionGroup'}{Properties}{OptionConfigurations}{Required} = JSON::MaybeXS::false;
+
 my $dest_file = Path::Class::File->new($to);
 $dest_file->spew($json->encode($doc));
 
