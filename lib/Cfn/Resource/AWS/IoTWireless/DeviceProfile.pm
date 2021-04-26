@@ -1,4 +1,4 @@
-# AWS::IoTWireless::DeviceProfile generated from spec 22.0.0
+# AWS::IoTWireless::DeviceProfile generated from spec 34.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::IoTWireless::DeviceProfile',
@@ -59,9 +59,8 @@ package Cfn::Resource::Properties::AWS::IoTWireless::DeviceProfile {
   use MooseX::StrictConstructor;
   extends 'Cfn::Resource::Properties';
   
-  has LoRaWANDeviceProfile => (isa => 'Cfn::Resource::Properties::AWS::IoTWireless::DeviceProfile::LoRaWANDeviceProfile', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has LoRaWAN => (isa => 'Cfn::Resource::Properties::AWS::IoTWireless::DeviceProfile::LoRaWANDeviceProfile', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Name => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-  has NextToken => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Tags => (isa => 'ArrayOfCfn::Resource::Properties::TagType', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 

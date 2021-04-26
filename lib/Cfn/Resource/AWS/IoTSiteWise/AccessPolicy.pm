@@ -1,4 +1,4 @@
-# AWS::IoTSiteWise::AccessPolicy generated from spec 22.0.0
+# AWS::IoTSiteWise::AccessPolicy generated from spec 34.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::IoTSiteWise::AccessPolicy',
@@ -14,7 +14,7 @@ package Cfn::Resource::AWS::IoTSiteWise::AccessPolicy {
     [ 'AccessPolicyArn','AccessPolicyId' ]
   }
   sub supported_regions {
-    [ 'ap-southeast-1','ap-southeast-2','eu-central-1','eu-west-1','us-east-1','us-west-2' ]
+    [ 'ap-southeast-1','ap-southeast-2','cn-north-1','eu-central-1','eu-west-1','us-east-1','us-west-2' ]
   }
 }
 
@@ -83,6 +83,48 @@ package Cfn::Resource::Properties::Object::AWS::IoTSiteWise::AccessPolicy::Porta
   has id => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
+subtype 'Cfn::Resource::Properties::AWS::IoTSiteWise::AccessPolicy::IamUser',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::IoTSiteWise::AccessPolicy::IamUser',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::IoTSiteWise::AccessPolicy::IamUser->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::IoTSiteWise::AccessPolicy::IamUser {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has arn => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
+subtype 'Cfn::Resource::Properties::AWS::IoTSiteWise::AccessPolicy::IamRole',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::IoTSiteWise::AccessPolicy::IamRole',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::IoTSiteWise::AccessPolicy::IamRole->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::IoTSiteWise::AccessPolicy::IamRole {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has arn => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
 subtype 'Cfn::Resource::Properties::AWS::IoTSiteWise::AccessPolicy::AccessPolicyResource',
      as 'Cfn::Value';
 
@@ -123,6 +165,8 @@ package Cfn::Resource::Properties::Object::AWS::IoTSiteWise::AccessPolicy::Acces
   use MooseX::StrictConstructor;
   extends 'Cfn::Value::TypedValue';
   
+  has IamRole => (isa => 'Cfn::Resource::Properties::AWS::IoTSiteWise::AccessPolicy::IamRole', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has IamUser => (isa => 'Cfn::Resource::Properties::AWS::IoTSiteWise::AccessPolicy::IamUser', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has User => (isa => 'Cfn::Resource::Properties::AWS::IoTSiteWise::AccessPolicy::User', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 

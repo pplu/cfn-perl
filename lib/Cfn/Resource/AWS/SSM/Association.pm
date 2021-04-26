@@ -1,4 +1,4 @@
-# AWS::SSM::Association generated from spec 18.4.0
+# AWS::SSM::Association generated from spec 34.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::SSM::Association',
@@ -87,6 +87,45 @@ package Cfn::Resource::Properties::Object::AWS::SSM::Association::Target {
   has Values => (isa => 'Cfn::Value::Array|Cfn::Value::Function|Cfn::DynamicValue', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
+subtype 'MapOfCfn::Resource::Properties::AWS::SSM::Association::ParameterValues',
+     as 'Cfn::Value',
+  where { $_->isa('Cfn::Value::Hash') or $_->isa('Cfn::Value::Function') },
+message { "$_ is not a Cfn::Value or a Cfn::Value::Function" };
+
+coerce 'MapOfCfn::Resource::Properties::AWS::SSM::Association::ParameterValues',
+  from 'HashRef',
+   via {
+     my $arg = $_;
+     if (my $f = Cfn::TypeLibrary::try_function($arg)) {
+       return $f
+     } else {
+       Cfn::Value::Hash->new(Value => {
+         map { $_ => Moose::Util::TypeConstraints::find_type_constraint('Cfn::Resource::Properties::AWS::SSM::Association::ParameterValues')->coerce($arg->{$_}) } keys %$arg
+       });
+     }
+   };
+
+subtype 'Cfn::Resource::Properties::AWS::SSM::Association::ParameterValues',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::SSM::Association::ParameterValues',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::SSM::Association::ParameterValues->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::SSM::Association::ParameterValues {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has ParameterValues => (isa => 'Cfn::Value::Array|Cfn::Value::Function|Cfn::DynamicValue', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
 subtype 'Cfn::Resource::Properties::AWS::SSM::Association::InstanceAssociationOutputLocation',
      as 'Cfn::Value';
 
@@ -123,7 +162,7 @@ package Cfn::Resource::Properties::AWS::SSM::Association {
   has MaxErrors => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Name => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has OutputLocation => (isa => 'Cfn::Resource::Properties::AWS::SSM::Association::InstanceAssociationOutputLocation', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-  has Parameters => (isa => 'Cfn::Value::Hash|Cfn::DynamicValue', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has Parameters => (isa => 'MapOfCfn::Resource::Properties::AWS::SSM::Association::ParameterValues', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has ScheduleExpression => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has SyncCompliance => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Targets => (isa => 'ArrayOfCfn::Resource::Properties::AWS::SSM::Association::Target', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');

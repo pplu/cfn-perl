@@ -1,4 +1,4 @@
-# AWS::ServiceDiscovery::Instance generated from spec 22.0.0
+# AWS::ServiceDiscovery::Instance generated from spec 34.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::ServiceDiscovery::Instance',
@@ -25,7 +25,7 @@ package Cfn::Resource::Properties::AWS::ServiceDiscovery::Instance {
   use MooseX::StrictConstructor;
   extends 'Cfn::Resource::Properties';
   
-  has InstanceAttributes => (isa => 'Cfn::Value::Hash|Cfn::DynamicValue', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has InstanceAttributes => (isa => 'Cfn::Value::Json|Cfn::DynamicValue', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has InstanceId => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has ServiceId => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
 }

@@ -1,4 +1,4 @@
-# AWS::Kendra::DataSource generated from spec 22.0.0
+# AWS::Kendra::DataSource generated from spec 34.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::Kendra::DataSource',
@@ -819,6 +819,69 @@ package Cfn::Resource::Properties::Object::AWS::Kendra::DataSource::OneDriveUser
   has OneDriveUserS3Path => (isa => 'Cfn::Resource::Properties::AWS::Kendra::DataSource::S3Path', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
+subtype 'Cfn::Resource::Properties::AWS::Kendra::DataSource::ExcludeUserAccountsList',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::Kendra::DataSource::ExcludeUserAccountsList',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::Kendra::DataSource::ExcludeUserAccountsList->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::Kendra::DataSource::ExcludeUserAccountsList {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has ExcludeUserAccountsList => (isa => 'Cfn::Value::Array|Cfn::Value::Function|Cfn::DynamicValue', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
+subtype 'Cfn::Resource::Properties::AWS::Kendra::DataSource::ExcludeSharedDrivesList',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::Kendra::DataSource::ExcludeSharedDrivesList',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::Kendra::DataSource::ExcludeSharedDrivesList->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::Kendra::DataSource::ExcludeSharedDrivesList {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has ExcludeSharedDrivesList => (isa => 'Cfn::Value::Array|Cfn::Value::Function|Cfn::DynamicValue', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
+subtype 'Cfn::Resource::Properties::AWS::Kendra::DataSource::ExcludeMimeTypesList',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::Kendra::DataSource::ExcludeMimeTypesList',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::Kendra::DataSource::ExcludeMimeTypesList->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::Kendra::DataSource::ExcludeMimeTypesList {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has ExcludeMimeTypesList => (isa => 'Cfn::Value::Array|Cfn::Value::Function|Cfn::DynamicValue', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
 subtype 'Cfn::Resource::Properties::AWS::Kendra::DataSource::DocumentsMetadataConfiguration',
      as 'Cfn::Value';
 
@@ -1181,6 +1244,33 @@ package Cfn::Resource::Properties::Object::AWS::Kendra::DataSource::OneDriveConf
   has TenantDomain => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
+subtype 'Cfn::Resource::Properties::AWS::Kendra::DataSource::GoogleDriveConfiguration',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::Kendra::DataSource::GoogleDriveConfiguration',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::Kendra::DataSource::GoogleDriveConfiguration->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::Kendra::DataSource::GoogleDriveConfiguration {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has ExcludeMimeTypes => (isa => 'Cfn::Resource::Properties::AWS::Kendra::DataSource::ExcludeMimeTypesList', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has ExcludeSharedDrives => (isa => 'Cfn::Resource::Properties::AWS::Kendra::DataSource::ExcludeSharedDrivesList', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has ExcludeUserAccounts => (isa => 'Cfn::Resource::Properties::AWS::Kendra::DataSource::ExcludeUserAccountsList', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has ExclusionPatterns => (isa => 'Cfn::Resource::Properties::AWS::Kendra::DataSource::DataSourceInclusionsExclusionsStrings', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has FieldMappings => (isa => 'Cfn::Resource::Properties::AWS::Kendra::DataSource::DataSourceToIndexFieldMappingList', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has InclusionPatterns => (isa => 'Cfn::Resource::Properties::AWS::Kendra::DataSource::DataSourceInclusionsExclusionsStrings', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has SecretArn => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
+
 subtype 'Cfn::Resource::Properties::AWS::Kendra::DataSource::DatabaseConfiguration',
      as 'Cfn::Value';
 
@@ -1237,27 +1327,6 @@ package Cfn::Resource::Properties::Object::AWS::Kendra::DataSource::ConfluenceCo
   has VpcConfiguration => (isa => 'Cfn::Resource::Properties::AWS::Kendra::DataSource::DataSourceVpcConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
-subtype 'Cfn::Resource::Properties::AWS::Kendra::DataSource::TagList',
-     as 'Cfn::Value';
-
-coerce 'Cfn::Resource::Properties::AWS::Kendra::DataSource::TagList',
-  from 'HashRef',
-   via {
-     if (my $f = Cfn::TypeLibrary::try_function($_)) {
-       return $f
-     } else {
-       return Cfn::Resource::Properties::Object::AWS::Kendra::DataSource::TagList->new( %$_ );
-     }
-   };
-
-package Cfn::Resource::Properties::Object::AWS::Kendra::DataSource::TagList {
-  use Moose;
-  use MooseX::StrictConstructor;
-  extends 'Cfn::Value::TypedValue';
-  
-  has TagList => (isa => 'ArrayOfCfn::Resource::Properties::TagType', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-}
-
 subtype 'Cfn::Resource::Properties::AWS::Kendra::DataSource::DataSourceConfiguration',
      as 'Cfn::Value';
 
@@ -1278,6 +1347,7 @@ package Cfn::Resource::Properties::Object::AWS::Kendra::DataSource::DataSourceCo
   
   has ConfluenceConfiguration => (isa => 'Cfn::Resource::Properties::AWS::Kendra::DataSource::ConfluenceConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has DatabaseConfiguration => (isa => 'Cfn::Resource::Properties::AWS::Kendra::DataSource::DatabaseConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has GoogleDriveConfiguration => (isa => 'Cfn::Resource::Properties::AWS::Kendra::DataSource::GoogleDriveConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has OneDriveConfiguration => (isa => 'Cfn::Resource::Properties::AWS::Kendra::DataSource::OneDriveConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has S3Configuration => (isa => 'Cfn::Resource::Properties::AWS::Kendra::DataSource::S3DataSourceConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has SalesforceConfiguration => (isa => 'Cfn::Resource::Properties::AWS::Kendra::DataSource::SalesforceConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
@@ -1296,7 +1366,7 @@ package Cfn::Resource::Properties::AWS::Kendra::DataSource {
   has Name => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has RoleArn => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Schedule => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-  has Tags => (isa => 'Cfn::Resource::Properties::AWS::Kendra::DataSource::TagList', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has Tags => (isa => 'ArrayOfCfn::Resource::Properties::TagType', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Type => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
 }
 
