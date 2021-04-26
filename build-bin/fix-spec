@@ -18,60 +18,12 @@ my $json = JSON::MaybeXS->new(canonical => 1, pretty => 1, space_after => 1);
 
 my $doc = $json->decode($file_content);
 
-my $iotthing = $doc->{ResourceTypes}{'AWS::IoT::Thing'}{Properties}{AttributePayload};
-delete $iotthing->{Type};
-$iotthing->{PrimitiveType} = 'Json';
+# Fix "Don't know how to handle type for property Parameters on AWS::DataBrew::Recipe.Action"
+# The "PrimitiveType" is not present in the Parameters attribute. In the
+# documentation it's empty
+#https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-action.html#cfn-databrew-recipe-action-parameters
+$doc->{PropertyTypes}{'AWS::DataBrew::Recipe.Action'}{Properties}{Parameters}{PrimitiveType} = 'Json';
 
-delete $doc->{PropertyTypes}{'AWS::IoT::Thing.AttributePayload'};
-
-# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-servicediscovery-instance.html#cfn-servicediscovery-instance-instanceattributes
-# the docs state that InstanceAttributes is a Map. This Map is declared as a PrimitiveType
-my $sd_instanceatts = $doc->{ResourceTypes}{'AWS::ServiceDiscovery::Instance'}{Properties}{InstanceAttributes};
-$sd_instanceatts->{ Type } = 'Map';
-$sd_instanceatts->{ PrimitiveType } = 'String'; 
-
-my $ssmassoc = $doc->{ResourceTypes}{'AWS::SSM::Association'}{Properties}{Parameters};
-delete $ssmassoc->{ItemType};
-$ssmassoc->{PrimitiveType} = 'Json';
-
-delete $doc->{PropertyTypes}{'AWS::SSM::Association.ParameterValues'};
-
-delete $doc->{PropertyTypes}{'AWS::EC2::LaunchTemplate.CapacityReservationPreference'};
-delete $doc->{PropertyTypes}{'AWS::EC2::LaunchTemplate.CapacityReservationSpecification'}{Properties}{CapacityReservationPreference}{Type};
-$doc->{PropertyTypes}{'AWS::EC2::LaunchTemplate.CapacityReservationSpecification'}{Properties}{CapacityReservationPreference}{ PrimitiveType } = 'String';
-
-# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iot-provisioningtemplate.html#cfn-iot-provisioningtemplate-tags
-$doc->{PropertyTypes}{'AWS::IoT::ProvisioningTemplate.Tags'}{Properties}{Tags}{ItemType}= 'Tag';
-
-#https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecr-repository.html#cfn-ecr-repository-repositorypolicytext
-$doc->{ResourceTypes}{'AWS::ECR::Repository'}{Properties}{RepositoryPolicyText}{PrimitiveType} = 'Json';
-
-#https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-kms-key.html#cfn-kms-key-keypolicy
-$doc->{ResourceTypes}{'AWS::KMS::Key'}{Properties}{KeyPolicy}{PrimitiveType} = 'Json';
-
-# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-authorizer-tags.html
-# Not supported by CloudFormation
-$doc->{PropertyTypes}{'AWS::IoT::Authorizer.Tags'}{Properties}{Tags}{ItemType}= 'Tag';
-
-$doc->{PropertyTypes}{'AWS::IoT::DomainConfiguration.Tags'}{Properties}{Tags}{ItemType}= 'Tag';
-
-#https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-mediapackage-packagingconfiguration-cmafencryption.html
-$doc->{PropertyTypes}{'AWS::MediaPackage::PackagingConfiguration.HlsEncryption'}{Properties}{SpekeKeyProvider}{Type} = 'SpekeKeyProvider';
-$doc->{PropertyTypes}{'AWS::MediaPackage::PackagingConfiguration.DashEncryption'}{Properties}{SpekeKeyProvider}{Type} = 'SpekeKeyProvider';
-$doc->{PropertyTypes}{'AWS::MediaPackage::PackagingConfiguration.CmafEncryption'}{Properties}{SpekeKeyProvider}{Type} = 'SpekeKeyProvider';
-$doc->{PropertyTypes}{'AWS::MediaPackage::PackagingConfiguration.MssEncryption'}{Properties}{SpekeKeyProvider}{Type} = 'SpekeKeyProvider';
-
-
-# See: https://github.com/awsdocs/aws-cloudformation-user-guide/issues/876
-# https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-databrew-recipe-action.html
-delete $doc->{PropertyTypes}{'AWS::DataBrew::Recipe.Action'}{Properties}{Parameters};
-
-
-$doc->{ResourceTypes}{'AWS::ECR::PublicRepository'}{Properties}{RepositoryPolicyText}{PrimitiveType} = 'Json';
-$doc->{ResourceTypes}{'AWS::SageMaker::ModelPackageGroup'}{Properties}{ModelPackageGroupPolicy}{PrimitiveType} = 'Json';
-
-
-$doc->{ResourceTypes}{'AWS::RDS::OptionGroup'}{Properties}{OptionConfigurations}{Required} = JSON::MaybeXS::false;
 
 my $dest_file = Path::Class::File->new($to);
 $dest_file->spew($json->encode($doc));
