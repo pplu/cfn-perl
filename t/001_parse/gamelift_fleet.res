@@ -4,7 +4,14 @@
     "Name": "MyGameFleet",
     "Description": "A fleet for my game",
     "BuildId": { "Ref": "BuildResource" },
-    "ServerLaunchPath": "c:\\game\\TestApplicationServer.exe",
+    "RuntimeConfiguration": {
+      "ServerProcesses": [
+        {
+          "ConcurrentExecutions": "1",
+          "LaunchPath": "c:\\game\\TestApplicationServer.exe"
+        }
+      ]
+    },
     "EC2InstanceType": "t2.small",
     "DesiredEC2Instances": "2",
     "EC2InboundPermissions": [
