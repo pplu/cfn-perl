@@ -1,4 +1,4 @@
-# AWS::IoTWireless::ServiceProfile generated from spec 22.0.0
+# AWS::IoTWireless::ServiceProfile generated from spec 34.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::IoTWireless::ServiceProfile',
@@ -11,7 +11,7 @@ package Cfn::Resource::AWS::IoTWireless::ServiceProfile {
   has Properties => (isa => 'Cfn::Resource::Properties::AWS::IoTWireless::ServiceProfile', is => 'rw', coerce => 1);
   
   sub AttributeList {
-    [ 'Arn','Id' ]
+    [ 'Arn','ChannelMask','DevStatusReqFreq','DlBucketSize','DlRate','DlRatePolicy','DrMax','DrMin','HrAllowed','Id','MinGwDiversity','NwkGeoLoc','PrAllowed','RaAllowed','ReportDevStatusBattery','ReportDevStatusMargin','TargetPer','UlBucketSize','UlRate','UlRatePolicy' ]
   }
   sub supported_regions {
     [ 'eu-west-1','us-east-1' ]
@@ -34,27 +34,6 @@ coerce 'Cfn::Resource::Properties::AWS::IoTWireless::ServiceProfile::LoRaWANServ
    };
 
 package Cfn::Resource::Properties::Object::AWS::IoTWireless::ServiceProfile::LoRaWANServiceProfile {
-  use Moose;
-  use MooseX::StrictConstructor;
-  extends 'Cfn::Value::TypedValue';
-  
-  has AddGwMetadata => (isa => 'Cfn::Value::Boolean', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-}
-
-subtype 'Cfn::Resource::Properties::AWS::IoTWireless::ServiceProfile::LoRaWANGetServiceProfileInfo',
-     as 'Cfn::Value';
-
-coerce 'Cfn::Resource::Properties::AWS::IoTWireless::ServiceProfile::LoRaWANGetServiceProfileInfo',
-  from 'HashRef',
-   via {
-     if (my $f = Cfn::TypeLibrary::try_function($_)) {
-       return $f
-     } else {
-       return Cfn::Resource::Properties::Object::AWS::IoTWireless::ServiceProfile::LoRaWANGetServiceProfileInfo->new( %$_ );
-     }
-   };
-
-package Cfn::Resource::Properties::Object::AWS::IoTWireless::ServiceProfile::LoRaWANGetServiceProfileInfo {
   use Moose;
   use MooseX::StrictConstructor;
   extends 'Cfn::Value::TypedValue';
@@ -85,10 +64,8 @@ package Cfn::Resource::Properties::AWS::IoTWireless::ServiceProfile {
   use MooseX::StrictConstructor;
   extends 'Cfn::Resource::Properties';
   
-  has LoRaWANGetServiceProfileInfo => (isa => 'Cfn::Resource::Properties::AWS::IoTWireless::ServiceProfile::LoRaWANGetServiceProfileInfo', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-  has LoRaWANServiceProfile => (isa => 'Cfn::Resource::Properties::AWS::IoTWireless::ServiceProfile::LoRaWANServiceProfile', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has LoRaWAN => (isa => 'Cfn::Resource::Properties::AWS::IoTWireless::ServiceProfile::LoRaWANServiceProfile', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Name => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-  has NextToken => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Tags => (isa => 'ArrayOfCfn::Resource::Properties::TagType', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 

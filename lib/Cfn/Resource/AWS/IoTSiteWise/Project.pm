@@ -1,4 +1,4 @@
-# AWS::IoTSiteWise::Project generated from spec 22.0.0
+# AWS::IoTSiteWise::Project generated from spec 34.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::IoTSiteWise::Project',
@@ -14,7 +14,7 @@ package Cfn::Resource::AWS::IoTSiteWise::Project {
     [ 'ProjectArn','ProjectId' ]
   }
   sub supported_regions {
-    [ 'ap-southeast-1','ap-southeast-2','eu-central-1','eu-west-1','us-east-1','us-west-2' ]
+    [ 'ap-southeast-1','ap-southeast-2','cn-north-1','eu-central-1','eu-west-1','us-east-1','us-west-2' ]
   }
 }
 

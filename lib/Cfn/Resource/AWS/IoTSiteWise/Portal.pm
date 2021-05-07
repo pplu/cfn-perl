@@ -1,4 +1,4 @@
-# AWS::IoTSiteWise::Portal generated from spec 22.0.0
+# AWS::IoTSiteWise::Portal generated from spec 34.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::IoTSiteWise::Portal',
@@ -11,64 +11,21 @@ package Cfn::Resource::AWS::IoTSiteWise::Portal {
   has Properties => (isa => 'Cfn::Resource::Properties::AWS::IoTSiteWise::Portal', is => 'rw', coerce => 1);
   
   sub AttributeList {
-    [ 'PortalArn','PortalClientId','PortalId','PortalStartUrl','PortalStatus' ]
+    [ 'PortalArn','PortalClientId','PortalId','PortalStartUrl' ]
   }
   sub supported_regions {
-    [ 'ap-southeast-1','ap-southeast-2','eu-central-1','eu-west-1','us-east-1','us-west-2' ]
+    [ 'ap-southeast-1','ap-southeast-2','cn-north-1','eu-central-1','eu-west-1','us-east-1','us-west-2' ]
   }
 }
 
 
-
-subtype 'Cfn::Resource::Properties::AWS::IoTSiteWise::Portal::MonitorErrorDetails',
-     as 'Cfn::Value';
-
-coerce 'Cfn::Resource::Properties::AWS::IoTSiteWise::Portal::MonitorErrorDetails',
-  from 'HashRef',
-   via {
-     if (my $f = Cfn::TypeLibrary::try_function($_)) {
-       return $f
-     } else {
-       return Cfn::Resource::Properties::Object::AWS::IoTSiteWise::Portal::MonitorErrorDetails->new( %$_ );
-     }
-   };
-
-package Cfn::Resource::Properties::Object::AWS::IoTSiteWise::Portal::MonitorErrorDetails {
-  use Moose;
-  use MooseX::StrictConstructor;
-  extends 'Cfn::Value::TypedValue';
-  
-  has code => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-  has message => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-}
-
-subtype 'Cfn::Resource::Properties::AWS::IoTSiteWise::Portal::PortalStatus',
-     as 'Cfn::Value';
-
-coerce 'Cfn::Resource::Properties::AWS::IoTSiteWise::Portal::PortalStatus',
-  from 'HashRef',
-   via {
-     if (my $f = Cfn::TypeLibrary::try_function($_)) {
-       return $f
-     } else {
-       return Cfn::Resource::Properties::Object::AWS::IoTSiteWise::Portal::PortalStatus->new( %$_ );
-     }
-   };
-
-package Cfn::Resource::Properties::Object::AWS::IoTSiteWise::Portal::PortalStatus {
-  use Moose;
-  use MooseX::StrictConstructor;
-  extends 'Cfn::Value::TypedValue';
-  
-  has error => (isa => 'Cfn::Resource::Properties::AWS::IoTSiteWise::Portal::MonitorErrorDetails', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-  has state => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-}
 
 package Cfn::Resource::Properties::AWS::IoTSiteWise::Portal {
   use Moose;
   use MooseX::StrictConstructor;
   extends 'Cfn::Resource::Properties';
   
+  has PortalAuthMode => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has PortalContactEmail => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has PortalDescription => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has PortalName => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');

@@ -1,4 +1,4 @@
-# AWS::Batch::JobDefinition generated from spec 22.0.0
+# AWS::Batch::JobDefinition generated from spec 34.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::Batch::JobDefinition',
@@ -14,11 +14,33 @@ package Cfn::Resource::AWS::Batch::JobDefinition {
     [  ]
   }
   sub supported_regions {
-    [ 'ap-northeast-1','ap-northeast-2','ap-south-1','ap-southeast-1','ap-southeast-2','ca-central-1','eu-central-1','eu-west-1','eu-west-2','eu-west-3','sa-east-1','us-east-1','us-east-2','us-west-1','us-west-2' ]
+    [ 'af-south-1','ap-northeast-1','ap-northeast-2','ap-northeast-3','ap-south-1','ap-southeast-1','ap-southeast-2','ca-central-1','eu-central-1','eu-west-1','eu-west-2','eu-west-3','sa-east-1','us-east-1','us-east-2','us-west-1','us-west-2' ]
   }
 }
 
 
+
+subtype 'Cfn::Resource::Properties::AWS::Batch::JobDefinition::AuthorizationConfig',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::Batch::JobDefinition::AuthorizationConfig',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::Batch::JobDefinition::AuthorizationConfig->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::Batch::JobDefinition::AuthorizationConfig {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has AccessPointId => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has Iam => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
 
 subtype 'Cfn::Resource::Properties::AWS::Batch::JobDefinition::VolumesHost',
      as 'Cfn::Value';
@@ -129,6 +151,31 @@ package Cfn::Resource::Properties::Object::AWS::Batch::JobDefinition::Secret {
   has Name => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has ValueFrom => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
+
+subtype 'Cfn::Resource::Properties::AWS::Batch::JobDefinition::EfsVolumeConfiguration',
+     as 'Cfn::Value';
+
+coerce 'Cfn::Resource::Properties::AWS::Batch::JobDefinition::EfsVolumeConfiguration',
+  from 'HashRef',
+   via {
+     if (my $f = Cfn::TypeLibrary::try_function($_)) {
+       return $f
+     } else {
+       return Cfn::Resource::Properties::Object::AWS::Batch::JobDefinition::EfsVolumeConfiguration->new( %$_ );
+     }
+   };
+
+package Cfn::Resource::Properties::Object::AWS::Batch::JobDefinition::EfsVolumeConfiguration {
+  use Moose;
+  use MooseX::StrictConstructor;
+  extends 'Cfn::Value::TypedValue';
+  
+  has AuthorizationConfig => (isa => 'Cfn::Resource::Properties::AWS::Batch::JobDefinition::AuthorizationConfig', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has FileSystemId => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has RootDirectory => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has TransitEncryption => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has TransitEncryptionPort => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+}
 subtype 'ArrayOfCfn::Resource::Properties::AWS::Batch::JobDefinition::Device',
      as 'Cfn::Value',
   where { $_->isa('Cfn::Value::Array') or $_->isa('Cfn::Value::Function') },
@@ -215,6 +262,7 @@ package Cfn::Resource::Properties::Object::AWS::Batch::JobDefinition::Volumes {
   use MooseX::StrictConstructor;
   extends 'Cfn::Value::TypedValue';
   
+  has EfsVolumeConfiguration => (isa => 'Cfn::Resource::Properties::AWS::Batch::JobDefinition::EfsVolumeConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Host => (isa => 'Cfn::Resource::Properties::AWS::Batch::JobDefinition::VolumesHost', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Name => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
