@@ -1,4 +1,4 @@
-# AWS::CloudFormation::StackSet generated from spec 22.0.0
+# AWS::CloudFormation::StackSet generated from spec 34.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::CloudFormation::StackSet',
@@ -153,6 +153,7 @@ package Cfn::Resource::Properties::Object::AWS::CloudFormation::StackSet::Operat
   has FailureTolerancePercentage => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has MaxConcurrentCount => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has MaxConcurrentPercentage => (isa => 'Cfn::Value::Integer', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has RegionConcurrencyType => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has RegionOrder => (isa => 'Cfn::Value::Array|Cfn::Value::Function|Cfn::DynamicValue', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 

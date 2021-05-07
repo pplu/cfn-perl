@@ -1,4 +1,4 @@
-# AWS::RDS::OptionGroup generated from spec 22.0.0
+# AWS::RDS::OptionGroup generated from spec 34.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::RDS::OptionGroup',
@@ -119,7 +119,7 @@ package Cfn::Resource::Properties::AWS::RDS::OptionGroup {
   
   has EngineName => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has MajorEngineVersion => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
-  has OptionConfigurations => (isa => 'ArrayOfCfn::Resource::Properties::AWS::RDS::OptionGroup::OptionConfiguration', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
+  has OptionConfigurations => (isa => 'ArrayOfCfn::Resource::Properties::AWS::RDS::OptionGroup::OptionConfiguration', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has OptionGroupDescription => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has Tags => (isa => 'ArrayOfCfn::Resource::Properties::TagType', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }

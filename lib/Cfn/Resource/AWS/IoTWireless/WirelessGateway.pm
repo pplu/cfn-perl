@@ -1,4 +1,4 @@
-# AWS::IoTWireless::WirelessGateway generated from spec 22.0.0
+# AWS::IoTWireless::WirelessGateway generated from spec 34.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::IoTWireless::WirelessGateway',
@@ -11,7 +11,7 @@ package Cfn::Resource::AWS::IoTWireless::WirelessGateway {
   has Properties => (isa => 'Cfn::Resource::Properties::AWS::IoTWireless::WirelessGateway', is => 'rw', coerce => 1);
   
   sub AttributeList {
-    [ 'Arn','Id','ThingArn' ]
+    [ 'Arn','Id','ThingName' ]
   }
   sub supported_regions {
     [ 'eu-west-1','us-east-1' ]
@@ -38,8 +38,8 @@ package Cfn::Resource::Properties::Object::AWS::IoTWireless::WirelessGateway::Lo
   use MooseX::StrictConstructor;
   extends 'Cfn::Value::TypedValue';
   
-  has GatewayEui => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-  has RfRegion => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has GatewayEui => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has RfRegion => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
 package Cfn::Resource::Properties::AWS::IoTWireless::WirelessGateway {
@@ -48,11 +48,11 @@ package Cfn::Resource::Properties::AWS::IoTWireless::WirelessGateway {
   extends 'Cfn::Resource::Properties';
   
   has Description => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-  has LoRaWANGateway => (isa => 'Cfn::Resource::Properties::AWS::IoTWireless::WirelessGateway::LoRaWANGateway', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has LastUplinkReceivedAt => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has LoRaWAN => (isa => 'Cfn::Resource::Properties::AWS::IoTWireless::WirelessGateway::LoRaWANGateway', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Name => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-  has NextToken => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has Tags => (isa => 'ArrayOfCfn::Resource::Properties::TagType', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-  has ThingName => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has ThingArn => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
 1;

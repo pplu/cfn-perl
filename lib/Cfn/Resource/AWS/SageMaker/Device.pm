@@ -1,4 +1,4 @@
-# AWS::SageMaker::Device generated from spec 22.0.0
+# AWS::SageMaker::Device generated from spec 34.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::SageMaker::Device',
@@ -11,7 +11,7 @@ package Cfn::Resource::AWS::SageMaker::Device {
   has Properties => (isa => 'Cfn::Resource::Properties::AWS::SageMaker::Device', is => 'rw', coerce => 1);
   
   sub AttributeList {
-    [ 'DeviceFleetName' ]
+    [  ]
   }
   sub supported_regions {
     [ 'ap-northeast-1','eu-central-1','eu-west-1','us-east-1','us-east-2','us-west-2' ]
@@ -49,7 +49,8 @@ package Cfn::Resource::Properties::AWS::SageMaker::Device {
   extends 'Cfn::Resource::Properties';
   
   has Device => (isa => 'Cfn::Value::Json|Cfn::DynamicValue', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-  has Tags => (isa => 'Cfn::Resource::Properties::AWS::SageMaker::Device::Tag', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has DeviceFleetName => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
+  has Tags => (isa => 'ArrayOfCfn::Resource::Properties::TagType', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
 1;

@@ -1,4 +1,4 @@
-# AWS::SageMaker::DeviceFleet generated from spec 22.0.0
+# AWS::SageMaker::DeviceFleet generated from spec 34.0.0
 use Moose::Util::TypeConstraints;
 
 coerce 'Cfn::Resource::Properties::AWS::SageMaker::DeviceFleet',
@@ -11,7 +11,7 @@ package Cfn::Resource::AWS::SageMaker::DeviceFleet {
   has Properties => (isa => 'Cfn::Resource::Properties::AWS::SageMaker::DeviceFleet', is => 'rw', coerce => 1);
   
   sub AttributeList {
-    [ 'DeviceFleetName' ]
+    [  ]
   }
   sub supported_regions {
     [ 'ap-northeast-1','eu-central-1','eu-west-1','us-east-1','us-east-2','us-west-2' ]
@@ -48,9 +48,10 @@ package Cfn::Resource::Properties::AWS::SageMaker::DeviceFleet {
   extends 'Cfn::Resource::Properties';
   
   has Description => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has DeviceFleetName => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Immutable');
   has OutputConfig => (isa => 'Cfn::Resource::Properties::AWS::SageMaker::DeviceFleet::EdgeOutputConfig', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
   has RoleArn => (isa => 'Cfn::Value::String', is => 'rw', coerce => 1, required => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
-  has Tags => (isa => 'Cfn::Resource::Properties::AWS::SageMaker::DeviceFleet::Tag', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
+  has Tags => (isa => 'ArrayOfCfn::Resource::Properties::TagType', is => 'rw', coerce => 1, traits => [ 'CfnMutability' ], mutability => 'Mutable');
 }
 
 1;
